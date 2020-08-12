@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MagicConsole</id>
+    <version>1.0.0</version>
+    <authors>MagicConsole</authors>
+    <owners>MagicConsole</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="Dapper" version="2.0.35" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="3.1.6" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Binder" version="3.1.6" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.FileExtensions" version="3.1.6" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="3.1.6" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+        <dependency id="Oracle.ManagedDataAccess.Core" version="2.19.80" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\Project\DMC\ibs-meetingonline\web_service\console\MagicConsole\MagicConsole\bin\Debug\netcoreapp3.1\MagicConsole.runtimeconfig.json" target="lib\netcoreapp3.1\MagicConsole.runtimeconfig.json" />
+    <file src="E:\Project\DMC\ibs-meetingonline\web_service\console\MagicConsole\MagicConsole\bin\Debug\netcoreapp3.1\MagicConsole.dll" target="lib\netcoreapp3.1\MagicConsole.dll" />
+  </files>
+</package>
