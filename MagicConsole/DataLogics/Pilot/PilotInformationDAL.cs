@@ -24,37 +24,32 @@ namespace MagicConsole.DataLogics.Pilot
 
                     if (status == "PERMOHONAN")
                     {
-                        paramTgl = " AND TGL_WORK IS NOT NULL AND TO_CHAR(TGL_WORK, 'YYYY-MM-DD HH24:MI') = '" + date.AddMinutes(30).ToString("yyyy-MM-dd HH:mm") + "'";
-                        paramStatus = "PERMOHONAN";
+                        paramTgl = " AND CREATED_PERMOHONAN IS NOT NULL AND TO_CHAR(CREATED_PERMOHONAN, 'YYYY-MM-DD HH24:MI') = '" + date.ToString("yyyy-MM-dd HH:mm") + "'";
+                        paramStatus = " WHERE STATUS='PERMOHONAN'";
                     }
                     else if (status == "PENETAPAN")
                     {
-                        paramTgl = " AND TGL_WORK IS NOT NULL AND TO_CHAR(TGL_WORK, 'YYYY-MM-DD HH24:MI') = '" + date.AddMinutes(30).ToString("yyyy-MM-dd HH:mm") + "'";
-                        paramStatus = "PENETAPAN";
+                        paramTgl = " AND CREATED_PENETAPAN IS NOT NULL AND TO_CHAR(CREATED_PENETAPAN, 'YYYY-MM-DD HH24:MI') = '" + date.ToString("yyyy-MM-dd HH:mm") + "'";
+                        paramStatus = " WHERE STATUS='PENETAPAN'";
                     }
                     else if (status == "SPK1")
                     {
-                        paramTgl = " AND TGL_WORK IS NOT NULL AND TO_CHAR(TGL_WORK, 'YYYY-MM-DD HH24:MI') = '" + date.ToString("yyyy-MM-dd HH:mm") + "'";
-                        paramStatus = "SPK1";
+                        paramTgl = " AND CREATED_SPKP IS NOT NULL AND TO_CHAR(CREATED_SPKP, 'YYYY-MM-DD HH24:MI') = '" + date.ToString("yyyy-MM-dd HH:mm") + "'";
+                        paramStatus = " WHERE STATUS='SPK1'";
                     }
-                    else if (status == "MELAMPAUI PERMOHONAN")
+                    else if(status == "AKAN DILAYANI")
                     {
-                        paramStatus = "PERMOHONAN";
-                        paramTgl = " AND TGL_WORK IS NOT NULL AND TO_CHAR(TGL_WORK, 'YYYY-MM-DD HH24:MI') < '" + date.AddMinutes(5).ToString("yyyy-MM-dd HH:mm") + "'";
+                        paramTgl = " AND TGL_MULAI IS NOT NULL AND TO_CHAR(TGL_MULAI, 'YYYY-MM-DD HH24:MI') = '" + date.AddMinutes(30).ToString("yyyy-MM-dd HH:mm") + "'";
+                        paramStatus = " WHERE STATUS IN ('PERMOHONAN', 'PENETAPAN', 'SPK1')";
                     }
-                    else if (status == "MELAMPAUI PENETAPAN")
+                    else if (status == "MELAMPAUI TGL PELAYANAN")
                     {
-                        paramStatus = "PENETAPAN";
-                        paramTgl = " AND TGL_WORK IS NOT NULL AND TO_CHAR(TGL_WORK, 'YYYY-MM-DD HH24:MI') < '" + date.AddMinutes(5).ToString("yyyy-MM-dd HH:mm") + "'";
-                    }
-                    else if (status == "MELAMPAUI SPK1")
-                    {
-                        paramStatus = "SPK1";
+                        paramStatus = " WHERE STATUS IN ('PERMOHONAN', 'PENETAPAN', 'SPK1')";
                         paramTgl = " AND TGL_WORK IS NOT NULL AND TO_CHAR(TGL_WORK, 'YYYY-MM-DD HH24:MI') < '" + date.AddMinutes(5).ToString("yyyy-MM-dd HH:mm") + "'";
                     }
 
                     string sql = "SELECT * FROM (" +
-                                    "SELECT * FROM VW_MAGIC_PILOT_INFORMATION WHERE STATUS='" + paramStatus + "'" + paramTgl + 
+                                    "SELECT * FROM VW_MAGIC_PILOT_INFORMATION " + paramStatus + paramTgl + 
                                    ")";
 
 

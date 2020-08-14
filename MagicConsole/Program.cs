@@ -41,6 +41,7 @@ namespace MagicConsole
                     NotifikasiPilot.getPilotNotification("PERMOHONAN");
                     NotifikasiPilot.getPilotNotification("PENETAPAN");
                     NotifikasiPilot.getPilotNotification("SPK1");
+                    NotifikasiPilot.getPilotNotification("AKAN DILAYANI");
 
                     Thread.Sleep(1000 * 60);
                 }
@@ -55,9 +56,7 @@ namespace MagicConsole
                     NotifikasiTerminal.getTerminalNotification("MELAMPAUI RENCANA SANDAR");
 
                     // Notifikasi pilot
-                    //NotifikasiPilot.getPilotNotification("MELAMPAUI PERMOHONAN");
-                    NotifikasiPilot.getPilotNotification("MELAMPAUI PENETAPAN");
-                    NotifikasiPilot.getPilotNotification("MELAMPAUI SPK1");
+                    NotifikasiPilot.getPilotNotification("MELAMPAUI TGL PELAYANAN");
 
                     Thread.Sleep(1000 * 60 * 20);
                 }

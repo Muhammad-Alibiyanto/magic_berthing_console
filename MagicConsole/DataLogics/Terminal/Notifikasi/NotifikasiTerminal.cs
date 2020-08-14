@@ -65,7 +65,7 @@ namespace MagicConsole.DataLogics.Terminal.Notifikasi
                     {
                         DateTime date = DateTime.ParseExact(item.tgl_selesai, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                         string month_name = MonthFormatter.getMonthName(date.Month);
-                        var message = "KAPAL " + item.nama_kapal + " TELAH LEPAS LANDAS DARI " + item.kawasan + " (" + item.nama_lokasi + ") PADA " + date.ToString("dd") + " " + month_name.ToUpper() + " " + date.ToString("yyyy") + " JAM " + date.ToString("HH:mm");
+                        var message = "KAPAL " + item.nama_kapal + " TELAH LEPAS TAMBAT DARI " + item.kawasan + " (" + item.nama_lokasi + ") PADA " + date.ToString("dd") + " " + month_name.ToUpper() + " " + date.ToString("yyyy") + " JAM " + date.ToString("HH:mm");
 
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_cabang_induk", item.kd_cabang_induk); param.Add("kd_regional", item.kd_regional);

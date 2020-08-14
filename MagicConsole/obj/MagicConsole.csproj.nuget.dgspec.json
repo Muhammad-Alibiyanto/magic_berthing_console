@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Project\\DMC\\ibs-meetingonline\\web_service\\console\\MagicConsole\\MagicConsole\\MagicConsole.csproj": {}
+    "D:\\DMC\\C#\\magic_berthing_console\\MagicConsole\\MagicConsole.csproj": {}
   },
   "projects": {
-    "E:\\Project\\DMC\\ibs-meetingonline\\web_service\\console\\MagicConsole\\MagicConsole\\MagicConsole.csproj": {
+    "D:\\DMC\\C#\\magic_berthing_console\\MagicConsole\\MagicConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Project\\DMC\\ibs-meetingonline\\web_service\\console\\MagicConsole\\MagicConsole\\MagicConsole.csproj",
+        "projectUniqueName": "D:\\DMC\\C#\\magic_berthing_console\\MagicConsole\\MagicConsole.csproj",
         "projectName": "MagicConsole",
-        "projectPath": "E:\\Project\\DMC\\ibs-meetingonline\\web_service\\console\\MagicConsole\\MagicConsole\\MagicConsole.csproj",
-        "packagesPath": "C:\\Users\\libby\\.nuget\\packages\\",
-        "outputPath": "E:\\Project\\DMC\\ibs-meetingonline\\web_service\\console\\MagicConsole\\MagicConsole\\obj\\",
+        "projectPath": "D:\\DMC\\C#\\magic_berthing_console\\MagicConsole\\MagicConsole.csproj",
+        "packagesPath": "C:\\Users\\dmc\\.nuget\\packages\\",
+        "outputPath": "D:\\DMC\\C#\\magic_berthing_console\\MagicConsole\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\libby\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dmc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -82,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
