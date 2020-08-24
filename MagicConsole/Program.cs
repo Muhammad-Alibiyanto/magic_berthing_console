@@ -14,6 +14,7 @@ using MagicConsole.DataLogics.Passanger;
 using MagicConsole.DataLogics.Notifikasi.Passanger;
 using MagicConsole.DataLogics.Pilot;
 using MagicConsole.DataLogics.Pilot.Notifikasi;
+using MagicConsole.DataLogics.Warehouse.Notifikasi;
 
 namespace MagicConsole
 {
@@ -42,6 +43,10 @@ namespace MagicConsole
                     NotifikasiPilot.getPilotNotification("PENETAPAN");
                     NotifikasiPilot.getPilotNotification("SPK1");
                     NotifikasiPilot.getPilotNotification("AKAN DILAYANI");
+
+                    // Notifikasi warehouse
+                    NotifikasiWarehouse.getWarehouseNotification("MEMULAI TUMPUKAN");
+                    NotifikasiWarehouse.getWarehouseNotification("20 HARI TUMPUKAN");
 
                     Thread.Sleep(1000 * 60);
                 }

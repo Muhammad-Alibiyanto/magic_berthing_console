@@ -29,6 +29,7 @@ namespace MagicConsole.DataLogics.Notification
                 kd_terminal = "",
                 kd_agen = "",
                 nama_kapal = "",
+                pelanggan = "",
                 unique = "",
                 status = ""
             };
@@ -44,6 +45,7 @@ namespace MagicConsole.DataLogics.Notification
                     kd_terminal = param["kd_terminal"],
                     kd_agen = "",
                     nama_kapal = "",
+                    pelanggan = "",
                     unique = param["no_ppk_jasa"],
                     status = param["status"]
                 };
@@ -59,7 +61,24 @@ namespace MagicConsole.DataLogics.Notification
                     kd_terminal = "",
                     kd_agen = param["kd_agen"],
                     nama_kapal = param["nama_kapal"],
+                    pelanggan = "",
                     unique = param["no_ppk1"],
+                    status = param["status"]
+                };
+            }
+            else if (page == "Warehouse")
+            {
+                notification_data = new
+                {
+                    page = page,
+                    kd_cabang = param["kd_cabang"],
+                    kd_cabang_induk = "",
+                    kd_regional = param["kd_regional"],
+                    kd_terminal = param["kd_terminal"],
+                    kd_agen = "",
+                    nama_kapal = "",
+                    pelanggan = param["pelanggan"],
+                    unique = "",
                     status = param["status"]
                 };
             }
