@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Net;
 using System.Text;
+using Dapper;
+using MagicConsole.Model.Notification;
 using MagicConsole.Model.Terminal;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -26,7 +29,8 @@ namespace MagicConsole.DataLogics.Notification
                 kd_terminal = "",
                 kd_agen = "",
                 nama_kapal = "",
-                unique = ""
+                unique = "",
+                status = ""
             };
 
             if (page == "Terminal" || page == "Passanger")
@@ -40,7 +44,8 @@ namespace MagicConsole.DataLogics.Notification
                     kd_terminal = param["kd_terminal"],
                     kd_agen = "",
                     nama_kapal = "",
-                    unique = param["no_ppk_jasa"]
+                    unique = param["no_ppk_jasa"],
+                    status = param["status"]
                 };
             }
             else if (page == "Pilot")
@@ -54,7 +59,8 @@ namespace MagicConsole.DataLogics.Notification
                     kd_terminal = "",
                     kd_agen = param["kd_agen"],
                     nama_kapal = param["nama_kapal"],
-                    unique = param["no_ppk1"]
+                    unique = param["no_ppk1"],
+                    status = param["status"]
                 };
             }
 
@@ -127,6 +133,33 @@ namespace MagicConsole.DataLogics.Notification
             }
 
             return res;
+        }
+
+        public static string insertNotification(string message, string status, string kd_agen, string data, string title, int is_read, int id)
+        {
+
+            string result = null;
+
+            using (IDbConnection connection = Extension.GetConnection(1))
+            {
+                try
+                {
+                    var sql = "INSERT INTO T_MAGIC_NOTIFICATION VALUES('" + message + "', '" + status + "', '" + kd_agen + "', '" + data + "', '" + title + "', '" + is_read + "', '" + id + "')";
+
+                    var execute = connection.Execute(sql);
+
+                    if(execute == 1)
+                    {
+                        result = "Success";
+                    }
+                }
+                catch (Exception)
+                {
+                    result = null;
+                }
+            }
+
+            return result;
         }
     }
 }

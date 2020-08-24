@@ -34,6 +34,7 @@ namespace MagicConsole.Model.Pilot
         public string created_rea { get; set; }
         public string created_spkp { get; set; }
         public string tgl_mulai { get; set; }
+        public string tgl_permohonan { get; set; }
         public string gerakan { get; set; }
         public string no_ppk1 { get; set; }
         public string nama_agen { get; set; }

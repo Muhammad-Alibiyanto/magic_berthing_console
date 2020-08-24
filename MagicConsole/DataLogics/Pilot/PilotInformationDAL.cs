@@ -21,6 +21,7 @@ namespace MagicConsole.DataLogics.Pilot
                     string paramStatus = "";
                     string paramTgl = "";
                     DateTime date = DateTime.Now;
+                    //DateTime date = DateTime.ParseExact("2020-08-01 11:42:16", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
                     if (status == "PERMOHONAN")
                     {

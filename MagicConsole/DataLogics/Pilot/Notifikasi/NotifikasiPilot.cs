@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 
 namespace MagicConsole.DataLogics.Pilot.Notifikasi
 {
@@ -29,6 +30,9 @@ namespace MagicConsole.DataLogics.Pilot.Notifikasi
                         param.Add("kd_agen", item.kd_agen); param.Add("message", message); param.Add("no_ppk1", item.no_ppk1); param.Add("nama_kapal", item.nama_kapal);
                         param.Add("status", "SPK1"); param.Add("title", "Pilot Information - " + item.kawasan);
 
+                        string data = JsonSerializer.Serialize(param);
+                        Random id = new Random();
+                        string insertNotification = Notifications.insertNotification(message, "SPK1", "99998", data, "Pilot Information", 0, id.Next(10000, 99999));
 
                         var res = Notifications.sendNotification("SPECIFIC", "Pilot", param);
                         Console.WriteLine(res + "(" + status + " PILOT INFORMATION)");
@@ -43,13 +47,16 @@ namespace MagicConsole.DataLogics.Pilot.Notifikasi
                         param.Add("kd_agen", item.kd_agen); param.Add("message", message); param.Add("no_ppk1", item.no_ppk1); param.Add("nama_kapal", item.nama_kapal);
                         param.Add("status", "PENETAPAN"); param.Add("title", "Pilot Information - " + item.kawasan);
 
+                        string data = JsonSerializer.Serialize(param);
+                        Random id = new Random();
+                        string insertNotification = Notifications.insertNotification(message, "PENETAPAN", "99998", data, "Pilot Information", 0, id.Next(10000, 99999));
 
                         var res = Notifications.sendNotification("SPECIFIC", "Pilot", param);
                         Console.WriteLine(res + "(" + status + " PILOT INFORMATION)");
                     }
                     else if (status == "PERMOHONAN")
                     {
-                        DateTime date = DateTime.ParseExact(item.created_permohonan, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        DateTime date = DateTime.ParseExact(item.tgl_permohonan, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                         string month_name = MonthFormatter.getMonthName(date.Month);
                         var message = "PERMOHONAN PELAYANAN PANDU KAPAL " + item.nama_kapal + " PADA " + date.ToString("dd") + " " + month_name.ToUpper() + " " + date.ToString("yyyy") + " JAM " + date.ToString("HH:mm") + ".";
                         Dictionary<String, String> param = new Dictionary<String, String>();
@@ -57,6 +64,9 @@ namespace MagicConsole.DataLogics.Pilot.Notifikasi
                         param.Add("kd_agen", item.kd_agen); param.Add("message", message); param.Add("no_ppk1", item.no_ppk1); param.Add("nama_kapal", item.nama_kapal);
                         param.Add("status", "PERMOHONAN"); param.Add("title", "Pilot Information - " + item.kawasan);
 
+                        string data = JsonSerializer.Serialize(param);
+                        Random id = new Random();
+                        string insertNotification = Notifications.insertNotification(message, "PERMOHONAN", "99998", data, "Pilot Information", 0, id.Next(10000, 99999));
 
                         var res = Notifications.sendNotification("SPECIFIC", "Pilot", param);
                         Console.WriteLine(res + "(" + status + " PILOT INFORMATION)");
@@ -69,8 +79,11 @@ namespace MagicConsole.DataLogics.Pilot.Notifikasi
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.id_master_area); param.Add("kd_regional", item.kd_regional);
                         param.Add("kd_agen", item.kd_agen); param.Add("message", message); param.Add("no_ppk1", item.no_ppk1); param.Add("nama_kapal", item.nama_kapal);
-                        param.Add("status", "PENETAPAN"); param.Add("title", "Pilot Information - " + item.kawasan);
+                        param.Add("status", "AKAN DILAYANI"); param.Add("title", "Pilot Information - " + item.kawasan);
 
+                        string data = JsonSerializer.Serialize(param);
+                        Random id = new Random();
+                        string insertNotification = Notifications.insertNotification(message, "AKAN DILAYANI", "99998", data, "Pilot Information", 0, id.Next(10000, 99999));
 
                         var res = Notifications.sendNotification("SPECIFIC", "Pilot", param);
                         Console.WriteLine(res + "(" + status + " PILOT INFORMATION)");
@@ -85,6 +98,9 @@ namespace MagicConsole.DataLogics.Pilot.Notifikasi
                         param.Add("kd_agen", item.kd_agen); param.Add("message", message); param.Add("no_ppk1", item.no_ppk1); param.Add("nama_kapal", item.nama_kapal);
                         param.Add("status", "MELAMPAUI PERMOHONAN"); param.Add("title", "Pilot Information - " + item.kawasan);
 
+                        string data = JsonSerializer.Serialize(param);
+                        Random id = new Random();
+                        string insertNotification = Notifications.insertNotification(message, "MELAMPAUI TGL PELAYANAN", "99998", data, "Pilot Information", 0, id.Next(10000, 99999));
 
                         var res = Notifications.sendNotification("SPECIFIC", "Pilot", param);
                         Console.WriteLine(res + "(" + status + " PILOT INFORMATION)");
