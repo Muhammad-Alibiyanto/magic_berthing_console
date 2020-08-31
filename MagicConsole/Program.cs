@@ -15,6 +15,7 @@ using MagicConsole.DataLogics.Notifikasi.Passanger;
 using MagicConsole.DataLogics.Pilot;
 using MagicConsole.DataLogics.Pilot.Notifikasi;
 using MagicConsole.DataLogics.Warehouse.Notifikasi;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MagicConsole
 {
@@ -22,7 +23,7 @@ namespace MagicConsole
     {
         static void Main(string[] args)
         {
-            Thread check_every_one_minutes = new Thread(() =>
+            Thread first = new Thread(() =>
             {
                 while (true)
                 {
@@ -46,13 +47,12 @@ namespace MagicConsole
 
                     // Notifikasi warehouse
                     NotifikasiWarehouse.getWarehouseNotification("MEMULAI TUMPUKAN");
-                    NotifikasiWarehouse.getWarehouseNotification("20 HARI TUMPUKAN");
 
-                    Thread.Sleep(1000 * 60);
+                    Thread.Sleep(1000 * 60); // 1 minutes check
                 }
             });
 
-            Thread check_every_n_minutes = new Thread(() =>
+            Thread second = new Thread(() =>
             {
                 while (true)
                 {
@@ -63,13 +63,24 @@ namespace MagicConsole
                     // Notifikasi pilot
                     NotifikasiPilot.getPilotNotification("MELAMPAUI TGL PELAYANAN");
 
-                    Thread.Sleep(1000 * 60 * 20);
+                    Thread.Sleep(1000 * 60 * 20); // 20 minutes check
                 }
             });
 
-            check_every_one_minutes.Start();
-            check_every_n_minutes.Start();
+            Thread third = new Thread(() =>
+            {
+                while (true)
+                {
+                    // Notifikasi warehouse
+                    NotifikasiWarehouse.getWarehouseNotification("20 HARI TUMPUKAN");
 
+                    Thread.Sleep((1000 * 60 * 60) * 24); // 24 hours check
+                }
+            });
+
+            first.Start();
+            second.Start();
+            third.Start();
         }
 
     }

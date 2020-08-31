@@ -31,7 +31,7 @@ namespace MagicConsole.DataLogics.Warehouse
                         paramTgl = " WHERE TGL_MULAI IS NOT NULL AND TO_CHAR(TGL_MULAI, 'YYYY-MM-DD HH24:MI') < '" + date.AddDays(-20).ToString("yyyy-MM-dd HH:mm") + "'";
                     }
 
-                    string sql = "SELECT * FROM T_STORAGE_CARGO_DETAIL" + paramTgl;
+                    string sql = "SELECT * FROM (SELECT A.*, B.REGIONAL_NAMA NAMA_REGIONAL FROM T_STORAGE_CARGO_DETAIL A, APP_REGIONAL B WHERE A.KD_REGION=B.ID AND B.PARENT_ID IS NULL AND B.ID NOT IN (12300000,20300001))" + paramTgl;
 
                     result = connection.Query<WarehouseAvailable>(sql);
                 }

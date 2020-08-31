@@ -29,13 +29,16 @@ namespace MagicConsole.DataLogics.Warehouse.Notifikasi
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_regional", item.kd_region); param.Add("kd_terminal", item.kd_terminal); 
                         param.Add("pelanggan", item.pelanggan); param.Add("message", message);
+                        param.Add("regional", item.nama_regional); param.Add("terminal", item.nama_terminal); param.Add("mglap_nama", item.mglap_nama); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_vak", item.nama_vak);
+                        param.Add("occupied", item.occupied); param.Add("nama_barang", item.nama_barang); param.Add("lama_tumpuk", item.lama_tumpuk);
                         param.Add("status", "MEMULAI TUMPUKAN"); param.Add("title", "Warehouse Information - " + item.nama_terminal+ "/" + item.mglap_nama);
 
                         string data = JsonSerializer.Serialize(param);
                         Random id = new Random();
-                        string insertNotification = Notifications.insertNotification(message, "MEMULAI TUMPUKAN", "99998", data, "Warehouse Information", 0, id.Next(10000, 99999));
+                        int notif_id = id.Next(10000, 99999);
+                        string insertNotification = Notifications.insertNotification(message, "MEMULAI TUMPUKAN", "99998", data, "Warehouse Information", 0, notif_id);
 
-                        var res = Notifications.sendNotification("SPECIFIC", "Warehouse", param);
+                        var res = Notifications.sendNotification("SPECIFIC", "Warehouse", param, notif_id);
                         Console.WriteLine(res + "(" + status + " WAREHOUSE INFORMATION)");
                     }
                     else if (status == "20 HARI TUMPUKAN")
@@ -48,13 +51,16 @@ namespace MagicConsole.DataLogics.Warehouse.Notifikasi
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_regional", item.kd_region); param.Add("kd_terminal", item.kd_terminal);
                         param.Add("pelanggan", item.pelanggan); param.Add("message", message);
+                        param.Add("regional", item.nama_regional); param.Add("terminal", item.nama_terminal); param.Add("mglap_nama", item.mglap_nama); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_vak", item.nama_vak);
+                        param.Add("occupied", item.occupied); param.Add("nama_barang", item.nama_barang); param.Add("lama_tumpuk", item.lama_tumpuk);
                         param.Add("status", "20 HARI TUMPUKAN"); param.Add("title", "Warehouse Information - " + item.nama_terminal + "/" + item.mglap_nama);
 
                         string data = JsonSerializer.Serialize(param);
                         Random id = new Random();
-                        string insertNotification = Notifications.insertNotification(message, "20 HARI TUMPUKAN", "99998", data, "Warehouse Information", 0, id.Next(10000, 99999));
+                        int notif_id = id.Next(10000, 99999);
+                        string insertNotification = Notifications.insertNotification(message, "20 HARI TUMPUKAN", "99998", data, "Warehouse Information", 0, notif_id);
 
-                        var res = Notifications.sendNotification("SPECIFIC", "Warehouse", param);
+                        var res = Notifications.sendNotification("SPECIFIC", "Warehouse", param, notif_id);
                         Console.WriteLine(res + "(" + status + " WAREHOUSE INFORMATION)");
                     }
 
@@ -64,7 +70,7 @@ namespace MagicConsole.DataLogics.Warehouse.Notifikasi
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("BELUM ADA NOTIFIKASI DIKIRIMKAN (" + status + " TERMINAL INFORMATION)");
+                Console.WriteLine("BELUM ADA NOTIFIKASI DIKIRIMKAN (" + status + " WAREHOUSE INFORMATION)");
                 Console.ResetColor();
             }
         }

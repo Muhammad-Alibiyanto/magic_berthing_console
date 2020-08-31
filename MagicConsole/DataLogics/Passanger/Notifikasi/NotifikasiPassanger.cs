@@ -30,14 +30,16 @@ namespace MagicConsole.DataLogics.Notifikasi.Passanger
                         var message = "KAPAL " + item.nama_kapal + " RENCANA SANDAR DI " + item.kawasan + " (" + item.nama_lokasi + ") PADA " + date.ToString("dd") + " " + month_name.ToUpper() + " " + date.ToString("yyyy") + " JAM " + date.ToString("HH:mm");
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_cabang_induk", item.kd_cabang_induk); param.Add("kd_regional", item.kd_regional);
-                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message);
+                        param.Add("regional", item.nama_regional); param.Add("terminal", item.kawasan); param.Add("dermaga", item.nama_lokasi); param.Add("pelabuhan_asal", item.nama_pelabuhan_asal); param.Add("pelabuhan_tujuan", item.nama_pelabuhan_tujuan); param.Add("no_ppk1", item.no_ppk1);
+                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_agen", item.nama_agen);
                         param.Add("status", "RENCANA"); param.Add("kd_agen", item.kode_agen); param.Add("title", "Passanger Information - " + item.kawasan + "/" + item.nama_lokasi);
 
                         string data = JsonSerializer.Serialize(param);
                         Random id = new Random();
-                        string insertNotification = Notifications.insertNotification(message, "RENCANA", "99998", data, "Passanger Information", 0, id.Next(10000, 99999));
+                        int notif_id = id.Next(10000, 99999);
+                        string insertNotification = Notifications.insertNotification(message, "RENCANA", "99998", data, "Passanger Information", 0, notif_id);
 
-                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param);
+                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param, notif_id);
                         Console.WriteLine(res + "(" + status + " PASSANGER INFORMATION) " + insertNotification);
                     }
                     else if (status == "SANDAR")
@@ -48,14 +50,16 @@ namespace MagicConsole.DataLogics.Notifikasi.Passanger
 
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_cabang_induk", item.kd_cabang_induk); param.Add("kd_regional", item.kd_regional);
-                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message);
+                        param.Add("regional", item.nama_regional); param.Add("terminal", item.kawasan); param.Add("dermaga", item.nama_lokasi); param.Add("pelabuhan_asal", item.nama_pelabuhan_asal); param.Add("pelabuhan_tujuan", item.nama_pelabuhan_tujuan); param.Add("no_ppk1", item.no_ppk1);
+                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_agen", item.nama_agen);
                         param.Add("status", "SANDAR"); param.Add("kd_agen", item.kode_agen); param.Add("title", "Passanger Information - " + item.kawasan + "/" + item.nama_lokasi);
 
                         string data = JsonSerializer.Serialize(param);
                         Random id = new Random();
-                        string insertNotification = Notifications.insertNotification(message, "SANDAR", "99998", data, "Passanger Information", 0, id.Next(10000, 99999));
+                        int notif_id = id.Next(10000, 99999);
+                        string insertNotification = Notifications.insertNotification(message, "SANDAR", "99998", data, "Passanger Information", 0, notif_id);
 
-                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param);
+                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param, notif_id);
                         Console.WriteLine(res + "(" + status + " PASSANGER INFORMATION)");
                     }
                     else if (status == "AKAN KELUAR")
@@ -66,14 +70,16 @@ namespace MagicConsole.DataLogics.Notifikasi.Passanger
 
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_cabang_induk", item.kd_cabang_induk); param.Add("kd_regional", item.kd_regional);
-                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message);
+                        param.Add("regional", item.nama_regional); param.Add("terminal", item.kawasan); param.Add("dermaga", item.nama_lokasi); param.Add("pelabuhan_asal", item.nama_pelabuhan_asal); param.Add("pelabuhan_tujuan", item.nama_pelabuhan_tujuan); param.Add("no_ppk1", item.no_ppk1);
+                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_agen", item.nama_agen);
                         param.Add("status", "SANDAR"); param.Add("kd_agen", item.kode_agen); param.Add("title", "Passanger Information - " + item.kawasan + "/" + item.nama_lokasi);
 
                         string data = JsonSerializer.Serialize(param);
                         Random id = new Random();
-                        string insertNotification = Notifications.insertNotification(message, "AKAN KELUAR", "99998", data, "Passanger Information", 0, id.Next(10000, 99999));
+                        int notif_id = id.Next(10000, 99999);
+                        string insertNotification = Notifications.insertNotification(message, "AKAN KELUAR", "99998", data, "Passanger Information", 0, notif_id);
 
-                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param);
+                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param, notif_id);
                         Console.WriteLine(res + "(" + status + " PASSANGER INFORMATION)");
                     }
                     else if (status == "HISTORY")
@@ -84,14 +90,16 @@ namespace MagicConsole.DataLogics.Notifikasi.Passanger
 
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_cabang_induk", item.kd_cabang_induk); param.Add("kd_regional", item.kd_regional);
-                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message);
+                        param.Add("regional", item.nama_regional); param.Add("terminal", item.kawasan); param.Add("dermaga", item.nama_lokasi); param.Add("pelabuhan_asal", item.nama_pelabuhan_asal); param.Add("pelabuhan_tujuan", item.nama_pelabuhan_tujuan); param.Add("no_ppk1", item.no_ppk1);
+                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_agen", item.nama_agen);
                         param.Add("status", "HISTORY"); param.Add("kd_agen", item.kode_agen); param.Add("title", "Passanger Information - " + item.kawasan + "/" + item.nama_lokasi);
 
                         string data = JsonSerializer.Serialize(param);
                         Random id = new Random();
-                        string insertNotification = Notifications.insertNotification(message, "HISTORY", "99998", data, "Passanger Information", 0, id.Next(10000, 99999));
+                        int notif_id = id.Next(10000, 99999);
+                        string insertNotification = Notifications.insertNotification(message, "HISTORY", "99998", data, "Passanger Information", 0, notif_id);
 
-                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param);
+                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param, notif_id);
                         Console.WriteLine(res + "(" + status + " PASSANGER INFORMATION)");
                     }
                     else if (status == "MELAMPAUI RENCANA SANDAR")
@@ -102,14 +110,16 @@ namespace MagicConsole.DataLogics.Notifikasi.Passanger
 
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_cabang_induk", item.kd_cabang_induk); param.Add("kd_regional", item.kd_regional);
-                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message);
+                        param.Add("regional", item.nama_regional); param.Add("terminal", item.kawasan); param.Add("dermaga", item.nama_lokasi); param.Add("pelabuhan_asal", item.nama_pelabuhan_asal); param.Add("pelabuhan_tujuan", item.nama_pelabuhan_tujuan); param.Add("no_ppk1", item.no_ppk1);
+                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_agen", item.nama_agen);
                         param.Add("status", "RENCANA"); param.Add("kd_agen", item.kode_agen); param.Add("title", "Passanger Information - " + item.kawasan + "/" + item.nama_lokasi);
 
                         string data = JsonSerializer.Serialize(param);
                         Random id = new Random();
-                        string insertNotification = Notifications.insertNotification(message, "MELAMPAUI RENCANA SANDAR", "99998", data, "Passanger Information", 0, id.Next(10000, 99999));
+                        int notif_id = id.Next(10000, 99999);
+                        string insertNotification = Notifications.insertNotification(message, "MELAMPAUI RENCANA SANDAR", "99998", data, "Passanger Information", 0, notif_id);
 
-                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param);
+                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param, notif_id);
                         Console.WriteLine(res + "(" + status + " PASSANGER INFORMATION)");
                     }
                     else if (status == "MELAMPAUI RENCANA KELUAR")
@@ -120,14 +130,16 @@ namespace MagicConsole.DataLogics.Notifikasi.Passanger
 
                         Dictionary<String, String> param = new Dictionary<String, String>();
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_cabang_induk", item.kd_cabang_induk); param.Add("kd_regional", item.kd_regional);
-                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message);
+                        param.Add("regional", item.nama_regional); param.Add("terminal", item.kawasan); param.Add("dermaga", item.nama_lokasi); param.Add("pelabuhan_asal", item.nama_pelabuhan_asal); param.Add("pelabuhan_tujuan", item.nama_pelabuhan_tujuan); param.Add("no_ppk1", item.no_ppk1);
+                        param.Add("kd_terminal", item.kd_terminal); param.Add("no_ppk_jasa", item.no_ppk_jasa); param.Add("message", message); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_agen", item.nama_agen);
                         param.Add("status", "SANDAR"); param.Add("kd_agen", item.kode_agen); param.Add("title", "Passanger Information - " + item.kawasan + "/" + item.nama_lokasi);
 
                         string data = JsonSerializer.Serialize(param);
                         Random id = new Random();
-                        string insertNotification = Notifications.insertNotification(message, "MELAMPAUI RENCANA KELUAR", "99998", data, "Passanger Information", 0, id.Next(10000, 99999));
+                        int notif_id = id.Next(10000, 99999);
+                        string insertNotification = Notifications.insertNotification(message, "MELAMPAUI RENCANA KELUAR", "99998", data, "Passanger Information", 0, notif_id);
 
-                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param);
+                        var res = Notifications.sendNotification("GLOBAL", "Passanger", param, notif_id);
                         Console.WriteLine(res + "(" + status + " PASSANGER INFORMATION)");
                     }
                     Console.ResetColor();

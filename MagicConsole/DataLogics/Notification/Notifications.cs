@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
 using Dapper;
 using MagicConsole.Model.Notification;
 using MagicConsole.Model.Terminal;
@@ -14,7 +17,7 @@ namespace MagicConsole.DataLogics.Notification
 {
     class Notifications
     {
-        public static string sendNotification(string type, string page, Dictionary<String, String> param)
+        public static string sendNotification(string type, string page, Dictionary<String, String> param, int id)
         {
             string str = null;
 
@@ -31,7 +34,8 @@ namespace MagicConsole.DataLogics.Notification
                 nama_kapal = "",
                 pelanggan = "",
                 unique = "",
-                status = ""
+                status = "",
+                id = ""
             };
 
             if (page == "Terminal" || page == "Passanger")
@@ -47,7 +51,8 @@ namespace MagicConsole.DataLogics.Notification
                     nama_kapal = "",
                     pelanggan = "",
                     unique = param["no_ppk_jasa"],
-                    status = param["status"]
+                    status = param["status"],
+                    id = id.ToString()
                 };
             }
             else if (page == "Pilot")
@@ -63,7 +68,8 @@ namespace MagicConsole.DataLogics.Notification
                     nama_kapal = param["nama_kapal"],
                     pelanggan = "",
                     unique = param["no_ppk1"],
-                    status = param["status"]
+                    status = param["status"],
+                    id = id.ToString()
                 };
             }
             else if (page == "Warehouse")
@@ -78,8 +84,9 @@ namespace MagicConsole.DataLogics.Notification
                     kd_agen = "",
                     nama_kapal = "",
                     pelanggan = param["pelanggan"],
-                    unique = "",
-                    status = param["status"]
+                    unique = param["nama_vak"],
+                    status = param["status"],
+                    id = id.ToString()
                 };
             }
 
@@ -154,6 +161,29 @@ namespace MagicConsole.DataLogics.Notification
             return res;
         }
 
+        public static int checkNotification(string message, string status, string kd_agen, string is_read, string title)
+        {
+            int result = 0;
+
+            using (IDbConnection connection = Extension.GetConnection(1))
+            {
+                try
+                {
+                    var sql = "SELECT * FROM T_MAGIC_NOTIFICATION WHERE MESSAGE='" + message + "' AND STATUS='" + status + "' AND KD_AGEN='" + kd_agen + "' AND TITLE='" + title + "' AND IS_READ='" + is_read + "'";
+
+                    var execute = connection.Query(sql);
+
+                    result = execute.ToList().Count();
+                }
+                catch (Exception)
+                {
+                    result = 0;
+                }
+            }
+
+            return result;
+        }
+
         public static string insertNotification(string message, string status, string kd_agen, string data, string title, int is_read, int id)
         {
 
@@ -163,13 +193,19 @@ namespace MagicConsole.DataLogics.Notification
             {
                 try
                 {
-                    var sql = "INSERT INTO T_MAGIC_NOTIFICATION VALUES('" + message + "', '" + status + "', '" + kd_agen + "', '" + data + "', '" + title + "', '" + is_read + "', '" + id + "')";
 
-                    var execute = connection.Execute(sql);
+                    int notifcount = Notifications.checkNotification(message, status, kd_agen, "0", title);
 
-                    if(execute == 1)
+                    if (notifcount == 0)
                     {
-                        result = "Success";
+                        var sql = "INSERT INTO T_MAGIC_NOTIFICATION VALUES('" + message + "', '" + status + "', '" + kd_agen + "', '" + data + "', '" + title + "', '" + is_read + "', '" + id + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+
+                        var execute = connection.Execute(sql);
+
+                        if(execute == 1)
+                        {
+                            result = "Success";
+                        }
                     }
                 }
                 catch (Exception)

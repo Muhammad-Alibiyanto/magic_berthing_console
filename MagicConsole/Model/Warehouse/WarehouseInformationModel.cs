@@ -31,5 +31,6 @@ namespace MagicConsole.Model.Warehouse
         public string kd_gudlap_d { get; set; }
         public string mglap_nama { get; set; }
         public string last_updated { get; set; }
+        public string nama_regional { get; set; }
     }
 }
