@@ -47,6 +47,13 @@ namespace MagicConsole.Model.Terminal
         public string status { get; set; }
         public string kode_agen { get; set; }
         public string status_nota { get; set; }
+        public string jumlah { get; set; }
+        public string jmlh_plan { get; set; }
+        public string jml_plan_bongkar { get; set; }
+        public string jml_real_bongkar { get; set; }
+        public string jml_plan_muat { get; set; }
+        public string jml_real_muat { get; set; }
     }
+
 
 }

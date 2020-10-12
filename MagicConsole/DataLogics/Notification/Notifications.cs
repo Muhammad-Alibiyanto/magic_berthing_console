@@ -35,7 +35,11 @@ namespace MagicConsole.DataLogics.Notification
                 pelanggan = "",
                 unique = "",
                 status = "",
-                id = ""
+                id = "",
+                transact_date = "",
+                lama_tumpuk = "",
+                created_date = "",
+                tgl_mulai = ""
             };
 
             if (page == "Terminal" || page == "Passanger")
@@ -52,7 +56,11 @@ namespace MagicConsole.DataLogics.Notification
                     pelanggan = "",
                     unique = param["no_ppk_jasa"],
                     status = param["status"],
-                    id = id.ToString()
+                    id = id.ToString(),
+                    transact_date = "",
+                    lama_tumpuk = "",
+                    created_date = "",
+                    tgl_mulai = ""
                 };
             }
             else if (page == "Pilot")
@@ -68,8 +76,12 @@ namespace MagicConsole.DataLogics.Notification
                     nama_kapal = param["nama_kapal"],
                     pelanggan = "",
                     unique = param["no_ppk1"],
-                    status = param["status"],
-                    id = id.ToString()
+                    status = "RENCANA",
+                    id = id.ToString(),
+                    transact_date = "",
+                    lama_tumpuk = "",
+                    created_date = "",
+                    tgl_mulai = ""
                 };
             }
             else if (page == "Warehouse")
@@ -86,7 +98,32 @@ namespace MagicConsole.DataLogics.Notification
                     pelanggan = param["pelanggan"],
                     unique = param["nama_vak"],
                     status = param["status"],
-                    id = id.ToString()
+                    id = id.ToString(),
+                    transact_date = "",
+                    lama_tumpuk = "",
+                    created_date = param["created_date"],
+                    tgl_mulai = param["tgl_mulai"]
+                };
+            }
+            else if (page == "Container")
+            {
+                notification_data = new
+                {
+                    page = page,
+                    kd_cabang = param["kd_cabang"],
+                    kd_cabang_induk = "",
+                    kd_regional = param["kd_regional"],
+                    kd_terminal = param["kd_terminal"],
+                    kd_agen = "",
+                    nama_kapal = "",
+                    pelanggan = param["pelanggan"],
+                    unique = param["container_no"],
+                    status = param["status"],
+                    id = id.ToString(),
+                    transact_date = param["transact_date"],
+                    lama_tumpuk = param["lama_tumpuk"],
+                    created_date = "",
+                    tgl_mulai = ""
                 };
             }
 
@@ -98,14 +135,14 @@ namespace MagicConsole.DataLogics.Notification
             }
             else if (type == "SPECIFIC")
             {
-                //notif_destination = "/topics/IBS-KP-" + param["kd_cabang"] + "-" + param["kd_agen"];
-                notif_destination = "/topics/IBS-KP-02-99998";
+                notif_destination = "/topics/IBS-MB-" + param["kd_cabang"] + "-" + param["kd_agen"];
+                //notif_destination = "/topics/IBS-MB-02-99998";
             }
 
             try
             {
-                var applicationID = "AAAA9MFVvTE:APA91bEtnEGKbnqWn-OQQj80n2GUx2gFw1F_gJEuZJML8KyFJl7bPjd4Y3Ao-0FCQAPn2qXeqRRD8Yniv8WfehMI5lN6eSxqBiAphJ3TTy8aiaVrloae9vlQmoc8sqXhTQTkDm6cBiU9";
-                var senderId = "1051215641905";
+                var applicationID = "AAAAid5TXqQ:APA91bFhL2Rd-MQl8dOZ-Zbgq9ZAuFwFYE4mclpUeenvWYAE7Xq6zqQpmPIpgrzGT7vNb7eCuhx7CoEGvH2-LhIFDrQaJLhQefIOeNp6_gnvcmxw4ahAg6TbIf-wHVpO_bv59_sx4cS-";
+                //var senderId = "1051215641905";
                 //var applicationID = "AAAAid5TXqQ:APA91bFhL2Rd-MQl8dOZ-Zbgq9ZAuFwFYE4mclpUeenvWYAE7Xq6zqQpmPIpgrzGT7vNb7eCuhx7CoEGvH2-LhIFDrQaJLhQefIOeNp6_gnvcmxw4ahAg6TbIf-wHVpO_bv59_sx4cS-";
                 //string[] deviceId = new string[] { "dSk4v9BLYEc:APA91bEEvvPPwZfsT4Uuvpqat8Zd6VUKbARrVV0KjI23jZP_lHLPTFG1UAUHxmjxHcU3onv1eNuN4U1kIVv0wnZUDDSY8ax6g9pYnZdnbwz1X0gCvDmKK80jTV2G1wMeUxKyUDHX9caW" };
                 WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
@@ -130,7 +167,7 @@ namespace MagicConsole.DataLogics.Notification
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 Byte[] byteArray = Encoding.UTF8.GetBytes(json);
                 tRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
-                tRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
+                //tRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
                 tRequest.ContentLength = byteArray.Length;
 
                 using (Stream dataStream = tRequest.GetRequestStream())

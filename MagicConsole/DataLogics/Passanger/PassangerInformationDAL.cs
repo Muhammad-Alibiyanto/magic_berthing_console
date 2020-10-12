@@ -21,7 +21,7 @@ namespace MagicConsole.DataLogics.Passanger
                     string paramStatus = "";
                     string paramTgl = "";
                     DateTime date = DateTime.Now;
-                    //DateTime date = DateTime.ParseExact("2020-07-30 00:30:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                    //DateTime date = DateTime.ParseExact("2020-09-09 05:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
                     if (status == "HISTORY")
                     {
@@ -41,7 +41,7 @@ namespace MagicConsole.DataLogics.Passanger
                     else if (status == "RENCANA")
                     {
                         paramStatus = "RENCANA";
-                        paramTgl = " AND (TO_CHAR(TGL_MULAI_PTP, 'YYYY-MM-DD HH24:MI') = '" + date.AddMinutes(30).ToString("yyyy-MM-dd HH:mm") + "' OR TO_CHAR(TGL_MULAI_PTP, 'YYYY-MM-DD HH24:MI') = '" + date.AddHours(12).ToString("yyyy-MM-dd HH:mm") + "') AND TGL_MULAI IS NULL AND TGL_SELESAI IS NULL AND STATUS_NOTA=0";
+                        paramTgl = " AND (TO_CHAR(TGL_MULAI_PTP, 'YYYY-MM-DD HH24:MI') = '" + date.AddHours(24).ToString("yyyy-MM-dd HH:mm") + "' OR TO_CHAR(TGL_MULAI_PTP, 'YYYY-MM-DD HH24:MI') = '" + date.AddHours(12).ToString("yyyy-MM-dd HH:mm") + "' OR TO_CHAR(TGL_MULAI_PTP, 'YYYY-MM-DD HH24:MI') = '" + date.AddHours(6).ToString("yyyy-MM-dd HH:mm") + "') AND TGL_MULAI IS NULL AND TGL_SELESAI IS NULL AND STATUS_NOTA=0";
                     }
                     else if (status == "MELAMPAUI RENCANA SANDAR")
                     {

@@ -21,6 +21,7 @@ namespace MagicConsole.DataLogics.Terminal
                     string paramStatus = "";
                     string paramTgl = "";
                     DateTime date = DateTime.Now;
+                    //DateTime date = DateTime.ParseExact("2020-09-15 07:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
                     if (status == "HISTORY")
                     {

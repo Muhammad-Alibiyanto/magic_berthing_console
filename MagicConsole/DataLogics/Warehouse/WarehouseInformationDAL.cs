@@ -20,7 +20,7 @@ namespace MagicConsole.DataLogics.Warehouse
                 {
                     string paramTgl = "";
                     DateTime date = DateTime.Now;
-                    //DateTime date = DateTime.ParseExact("2020-08-22 00:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                    //DateTime date = DateTime.ParseExact("2019-10-30 16:57:37", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
                     if (status == "MEMULAI TUMPUKAN")
                     {

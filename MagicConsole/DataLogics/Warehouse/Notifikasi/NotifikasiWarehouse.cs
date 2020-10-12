@@ -30,7 +30,7 @@ namespace MagicConsole.DataLogics.Warehouse.Notifikasi
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_regional", item.kd_region); param.Add("kd_terminal", item.kd_terminal); 
                         param.Add("pelanggan", item.pelanggan); param.Add("message", message);
                         param.Add("regional", item.nama_regional); param.Add("terminal", item.nama_terminal); param.Add("mglap_nama", item.mglap_nama); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_vak", item.nama_vak);
-                        param.Add("occupied", item.occupied); param.Add("nama_barang", item.nama_barang); param.Add("lama_tumpuk", item.lama_tumpuk);
+                        param.Add("occupied", item.occupied); param.Add("nama_barang", item.nama_barang); param.Add("lama_tumpuk", item.lama_tumpuk); param.Add("tgl_mulai", date.AddDays(-20).ToString("yyyy-MM-dd HH:mm")); param.Add("created_date", date.ToString("yyyy-MM-dd HH:mm"));
                         param.Add("status", "MEMULAI TUMPUKAN"); param.Add("title", "Warehouse Information - " + item.nama_terminal+ "/" + item.mglap_nama);
 
                         string data = JsonSerializer.Serialize(param);
@@ -52,7 +52,7 @@ namespace MagicConsole.DataLogics.Warehouse.Notifikasi
                         param.Add("kd_cabang", item.kd_cabang); param.Add("kd_regional", item.kd_region); param.Add("kd_terminal", item.kd_terminal);
                         param.Add("pelanggan", item.pelanggan); param.Add("message", message);
                         param.Add("regional", item.nama_regional); param.Add("terminal", item.nama_terminal); param.Add("mglap_nama", item.mglap_nama); param.Add("nama_kapal", item.nama_kapal); param.Add("nama_vak", item.nama_vak);
-                        param.Add("occupied", item.occupied); param.Add("nama_barang", item.nama_barang); param.Add("lama_tumpuk", item.lama_tumpuk);
+                        param.Add("occupied", item.occupied); param.Add("nama_barang", item.nama_barang); param.Add("lama_tumpuk", item.lama_tumpuk); param.Add("tgl_mulai", date.AddDays(-20).ToString("yyyy-MM-dd HH:mm")); param.Add("created_date", date.ToString("yyyy-MM-dd HH:mm"));
                         param.Add("status", "20 HARI TUMPUKAN"); param.Add("title", "Warehouse Information - " + item.nama_terminal + "/" + item.mglap_nama);
 
                         string data = JsonSerializer.Serialize(param);
